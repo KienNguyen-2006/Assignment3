@@ -1,47 +1,101 @@
-$(document).ready(function() {
+"use strict";
+
+const $ = (selector) => document.querySelector(selector);
+
+
+document.addEventListener("DOMContentLoaded", () => { 
+    const selectedRoomType = document.querySelector('input[name="roomType"]:checked');
+    const selectedBedType = document.querySelector('input[name="bedType"]:checked');
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    $("#arrivalDate").focus() 
 
-    $("#arrival-date").focus();
+    $("#reservationForm").addEventListener("submit", (e) => {
 
-    $("form").submit(function(event) {
-        var arrivalDate = $("#arrival-date").val().trim();
-        var nights = $("#nights").val().trim();
-        var adults = $("#adults").val().trim();
-        var children = $("#children").val().trim();
-        var name = $("#name").val().trim();
-        var email = $("#email").val().trim();
-        var phone = $("#phone").val().trim();
+        const nights = $("#nights").value.trim()
+        const name = $("#name").value.trim();
+        const emailAddress = $("#emailAddress").value.trim();
+        const phoneNumber = $("#phoneNumber").value.trim();
+        const roomType = $("#roomType").value.trim();
+        const bedType = $("#bedType").value.trim();
+        const adults = $("#adults").value.trim();
+        const children = $("#children").value.trim();
+        const arrivalDate = $("#arrivalDate").value.trim();
 
-        // Validate the entries
-        var isValid = true;
+        let isValid = true;
 
-        if (arrivalDate === "") {
-            alert("Please enter an arrival date.");
+        clearErrors();
+
+        if(name === ""){
+            showError("#name", "This field is required")
             isValid = false;
         }
 
-        if (nights === "" || isNaN(nights)) {
-            alert("Please enter a valid number of nights.");
+    
+        if (emailAddress === ""){
+            showError("#emailAddress", "This field is required");
+            isValid = false;
+        } 
+        else if (!emailPattern.test(emailAddress)){
+            showError("#emailAddress", "Must be a valid email address.");
             isValid = false;
         }
 
-        if (email === "") {
-            alert("Please enter an email address.");
+        if (nights == ""){
+            showError("#nights","This field is required");
             isValid = false;
-        } else if (!emailPattern.test(email)) {
-            alert("Please enter a valid email address.");
+        }
+        else if (isNaN(nights)){
+            showError("#nights","Must be numeric.");
+            isValid = false;
+        }
+        else if(nights <= 0){
+            showError("#nights","Nights should be > 0")
             isValid = false;
         }
 
-        if (phone === "") {
-            alert("Please enter a phone number.");
-            isValid = false;
+        if(adults == 0 && children == 0){
+            showError("#adults","Amount of Adults/Children Must Be Selected");
         }
 
-        if (!isValid) {
-            event.preventDefault();
+        if(arrivalDate == ""){
+            showError("#arrivalDate","This field is required")
         }
 
-        
-    });
-});
+        if(!selectedRoomType){
+            showError("#roomType", "Choose An Option")
+        }
+
+        if(!selectedBedType){
+            showError("#bedType", "Choose An Option")
+        }
+
+        if(phoneNumber == ""){
+            showError("#phoneNumber", "This field is required");
+        }
+
+        if(!isValid){
+            e.preventDefault();
+        }
+
+        $("#name").value = name;
+        $("#nights").value = nights;
+        $("#emailAddress").value = emailAddress;
+        $("#phoneNumber").value = phoneNumber;
+        $("#adults").value = adults;
+        $("#children").value = children;
+        $("#arrivalDate").value = arrivalDate;
+        $("#roomType").value = roomType;
+})});
+
+const showError = (selector, message) =>{
+    const field = $(selector);
+    const error = document.createElement("span");
+    error.className = "error";
+    error.textContent = "* " + message;
+    field.parentElement.appendChild(error);
+}
+
+const clearErrors = () =>{
+    const errors = document.querySelectorAll(".error");
+    errors.forEach((error) => error.remove());
+}
