@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Request</title>
+</head>
+<body>
+    <form>
+        <h1>Reservation Request</h1>
+        
+        <fieldset>
+            <legend>General Information</legend>
+            <label for="arrival-date">Arrival date:</label>
+            <input type="date" id="arrival-date" name="arrival-date" required>
+            
+            <label for="nights">Nights:</label>
+            <input type="number" id="nights" name="nights" min="1" required>
+            
+            <label for="adults">Adults:</label>
+            <select id="adults" name="adults">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            
+            <label for="children">Children:</label>
+            <select id="children" name="children">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Preferences</legend>
+            <label>Room type:</label>
+            <input type="radio" id="standard" name="room-type" value="standard" checked>
+            <label for="standard">Standard</label>
+            <input type="radio" id="business" name="room-type" value="business">
+            <label for="business">Business</label>
+            <input type="radio" id="suite" name="room-type" value="suite">
+            <label for="suite">Suite</label><br>
+            
+            <label>Bed type:</label>
+            <input type="radio" id="king" name="bed-type" value="king" checked>
+            <label for="king">King</label>
+            <input type="radio" id="double" name="bed-type" value="double">
+            <label for="double">Double Double</label><br>
+            
+            <input type="checkbox" id="smoking" name="smoking">
+            <label for="smoking">Smoking</label>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Contact Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email your email" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </fieldset>
+        
+        <div class="submit-btn">
+            <button type="submit">Submit Request</button>
+        </div>
+    </form>
+    <footer>
+        &copy; "Pham Trung Kien Nguyen/N01722491" 2023
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

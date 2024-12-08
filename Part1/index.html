@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Tax Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sales Tax Calculator</h1>
+    </header>
+    <main>
+        <p>Enter Subtotal and Tax Rate, then click "Calculate."</p>
+        
+        <form id="calculatorForm">
+            <div>
+                <label for="subTotal">Subtotal:</label>
+                <input type="number" id="subTotal" placeholder="Enter subtotal">
+            </div>
+
+            <div>
+                <label for="taxRate">Tax Rate (%):</label>
+                <input type="number" id="taxRate" placeholder="Enter tax rate">
+            </div>
+
+            <div>
+                <label for="salesTax">Sales Tax:</label>
+                <input type="text" id="salesTax" readonly>
+            </div>
+
+            <div>
+                <label for="total">Total:</label>
+                <input type="text" id="total" readonly>
+            </div>
+
+            <div>
+                <button type="button" id="calculate">Calculate</button>
+                <button type="button" id="clear">Clear</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>Pham Trung Kien Nguyen, N01722491, 2024</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
